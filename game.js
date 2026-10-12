@@ -174,6 +174,12 @@ function updatePlaying() {
     }
   }
 
+  // Victoria: no quedan bloques vivos
+  if (blocks.every(b => !b.alive)) {
+    state.status = 'victory';
+    return;
+  }
+
   // Bola cae por debajo del canvas
   if (ball.y - ball.radius > H) {
     state.lives--;

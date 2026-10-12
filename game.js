@@ -100,6 +100,24 @@ function updatePlaying() {
     ball.y = ball.radius;
     ball.dy = -ball.dy;
   }
+
+  // Colisión bola-paddle
+  const pLeft = paddle.x - paddle.width / 2;
+  const pRight = paddle.x + paddle.width / 2;
+  if (
+    ball.dy > 0 &&
+    ball.y + ball.radius >= paddle.y &&
+    ball.y + ball.radius <= paddle.y + paddle.height &&
+    ball.x >= pLeft &&
+    ball.x <= pRight
+  ) {
+    const hit = (ball.x - paddle.x) / (paddle.width / 2);
+    const maxAngle = Math.PI / 3;
+    const angle = hit * maxAngle;
+    ball.dx = ball.speed * Math.sin(angle);
+    ball.dy = -ball.speed * Math.cos(angle);
+    ball.y = paddle.y - ball.radius;
+  }
 }
 function updateGameOver() {}
 function updateVictory() {}

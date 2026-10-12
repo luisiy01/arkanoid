@@ -18,6 +18,15 @@ const paddle = {
   speed: 6,
 };
 
+const ball = {
+  x: 0,
+  y: 0,
+  radius: 6,
+  dx: 0,
+  dy: 0,
+  speed: 4,
+};
+
 const keys = {};
 
 window.addEventListener('keydown', e => { keys[e.key] = true; });
@@ -47,6 +56,18 @@ function draw() {
 }
 
 function updateStart() {}
+function attachBall() {
+  state.ballAttached = true;
+  ball.dx = 0;
+  ball.dy = 0;
+}
+
+function launchBall() {
+  state.ballAttached = false;
+  ball.dx = ball.speed * 0.6;
+  ball.dy = -ball.speed * 0.8;
+}
+
 function updatePlaying() {
   if (keys['ArrowLeft'] || keys['a'] || keys['A']) {
     paddle.x -= paddle.speed;
@@ -56,6 +77,29 @@ function updatePlaying() {
   }
   if (paddle.x - paddle.width / 2 < 0) paddle.x = paddle.width / 2;
   if (paddle.x + paddle.width / 2 > W) paddle.x = W - paddle.width / 2;
+
+  if (state.ballAttached) {
+    ball.x = paddle.x;
+    ball.y = paddle.y - ball.radius;
+    if (keys[' ']) launchBall();
+    return;
+  }
+
+  ball.x += ball.dx;
+  ball.y += ball.dy;
+
+  if (ball.x - ball.radius < 0) {
+    ball.x = ball.radius;
+    ball.dx = -ball.dx;
+  }
+  if (ball.x + ball.radius > W) {
+    ball.x = W - ball.radius;
+    ball.dx = -ball.dx;
+  }
+  if (ball.y - ball.radius < 0) {
+    ball.y = ball.radius;
+    ball.dy = -ball.dy;
+  }
 }
 function updateGameOver() {}
 function updateVictory() {}
@@ -63,6 +107,7 @@ function updateVictory() {}
 function drawStart() {}
 function drawPlaying() {
   drawSprite(ctx, 'paddle', paddle.x - paddle.width / 2, paddle.y, paddle.width, paddle.height);
+  drawSprite(ctx, 'ball', ball.x - ball.radius, ball.y - ball.radius, ball.radius * 2, ball.radius * 2);
 }
 function drawPauseOverlay() {}
 function drawGameOver() {}

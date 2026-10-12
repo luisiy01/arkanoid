@@ -145,6 +145,34 @@ function updatePlaying() {
     ball.dy = -ball.speed * Math.cos(angle);
     ball.y = paddle.y - ball.radius;
   }
+
+  // Colisión bola-bloques
+  for (const b of blocks) {
+    if (!b.alive) continue;
+    if (
+      ball.x + ball.radius > b.x &&
+      ball.x - ball.radius < b.x + b.width &&
+      ball.y + ball.radius > b.y &&
+      ball.y - ball.radius < b.y + b.height
+    ) {
+      b.alive = false;
+      state.score += 10;
+
+      const overlapLeft = ball.x + ball.radius - b.x;
+      const overlapRight = b.x + b.width - (ball.x - ball.radius);
+      const overlapTop = ball.y + ball.radius - b.y;
+      const overlapBottom = b.y + b.height - (ball.y - ball.radius);
+      const minOverlapX = Math.min(overlapLeft, overlapRight);
+      const minOverlapY = Math.min(overlapTop, overlapBottom);
+
+      if (minOverlapX < minOverlapY) {
+        ball.dx = -ball.dx;
+      } else {
+        ball.dy = -ball.dy;
+      }
+      break;
+    }
+  }
 }
 function updateGameOver() {}
 function updateVictory() {}

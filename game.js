@@ -10,6 +10,14 @@ const state = {
   ballAttached: true,
 };
 
+const paddle = {
+  x: W / 2,
+  y: H - 40,
+  width: 80,
+  height: 16,
+  speed: 6,
+};
+
 const keys = {};
 
 window.addEventListener('keydown', e => { keys[e.key] = true; });
@@ -39,12 +47,23 @@ function draw() {
 }
 
 function updateStart() {}
-function updatePlaying() {}
+function updatePlaying() {
+  if (keys['ArrowLeft'] || keys['a'] || keys['A']) {
+    paddle.x -= paddle.speed;
+  }
+  if (keys['ArrowRight'] || keys['d'] || keys['D']) {
+    paddle.x += paddle.speed;
+  }
+  if (paddle.x - paddle.width / 2 < 0) paddle.x = paddle.width / 2;
+  if (paddle.x + paddle.width / 2 > W) paddle.x = W - paddle.width / 2;
+}
 function updateGameOver() {}
 function updateVictory() {}
 
 function drawStart() {}
-function drawPlaying() {}
+function drawPlaying() {
+  drawSprite(ctx, 'paddle', paddle.x - paddle.width / 2, paddle.y, paddle.width, paddle.height);
+}
 function drawPauseOverlay() {}
 function drawGameOver() {}
 function drawVictory() {}

@@ -56,7 +56,23 @@ function createBlocks() {
 
 const keys = {};
 
-window.addEventListener('keydown', e => { keys[e.key] = true; });
+function resetGame() {
+  state.status = 'playing';
+  state.lives = 3;
+  state.score = 0;
+  paddle.x = W / 2;
+  createBlocks();
+  attachBall();
+}
+
+window.addEventListener('keydown', e => {
+  keys[e.key] = true;
+  if ((e.key === 'Escape' || e.key === 'p' || e.key === 'P') && state.status === 'playing') {
+    state.status = 'paused';
+  } else if ((e.key === 'Escape' || e.key === 'p' || e.key === 'P') && state.status === 'paused') {
+    state.status = 'playing';
+  }
+});
 window.addEventListener('keyup', e => { keys[e.key] = false; });
 
 function update() {
@@ -82,7 +98,9 @@ function draw() {
   }
 }
 
-function updateStart() {}
+function updateStart() {
+  if (keys[' ']) resetGame();
+}
 function attachBall() {
   state.ballAttached = true;
   ball.dx = 0;
@@ -190,10 +208,37 @@ function updatePlaying() {
     }
   }
 }
-function updateGameOver() {}
-function updateVictory() {}
+function updateGameOver() {
+  if (keys[' ']) resetGame();
+}
+function updateVictory() {
+  if (keys[' ']) resetGame();
+}
 
-function drawStart() {}
+function drawHUD() {
+  ctx.fillStyle = '#fff';
+  ctx.font = '16px monospace';
+  ctx.textAlign = 'left';
+  ctx.fillText('Lives: ' + state.lives, 12, 24);
+  ctx.textAlign = 'right';
+  ctx.fillText('Score: ' + state.score, W - 12, 24);
+  ctx.textAlign = 'left';
+}
+
+function drawCenterText(title, subtitle) {
+  ctx.fillStyle = '#fff';
+  ctx.font = 'bold 36px monospace';
+  ctx.textAlign = 'center';
+  ctx.fillText(title, W / 2, H / 2 - 20);
+  ctx.font = '18px monospace';
+  ctx.fillStyle = '#aaa';
+  ctx.fillText(subtitle, W / 2, H / 2 + 20);
+  ctx.textAlign = 'left';
+}
+
+function drawStart() {
+  drawCenterText('ARKANOID', 'Press Space to start');
+}
 function drawBlocks() {
   for (const b of blocks) {
     if (!b.alive) continue;
@@ -205,10 +250,19 @@ function drawPlaying() {
   drawBlocks();
   drawSprite(ctx, 'paddle', paddle.x - paddle.width / 2, paddle.y, paddle.width, paddle.height);
   drawSprite(ctx, 'ball', ball.x - ball.radius, ball.y - ball.radius, ball.radius * 2, ball.radius * 2);
+  drawHUD();
 }
-function drawPauseOverlay() {}
-function drawGameOver() {}
-function drawVictory() {}
+function drawPauseOverlay() {
+  ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+  ctx.fillRect(0, 0, W, H);
+  drawCenterText('PAUSED', 'Press Esc or P to resume');
+}
+function drawGameOver() {
+  drawCenterText('GAME OVER', 'Score: ' + state.score + '  |  Press Space to restart');
+}
+function drawVictory() {
+  drawCenterText('VICTORY!', 'Score: ' + state.score + '  |  Press Space to restart');
+}
 
 function gameLoop() {
   update();

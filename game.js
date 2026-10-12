@@ -27,6 +27,33 @@ const ball = {
   speed: 4,
 };
 
+const BLOCK_ROWS = 7;
+const BLOCK_COLS = 12;
+const BLOCK_W = 32;
+const BLOCK_H = 16;
+const BLOCK_PAD = 4;
+const BLOCK_OFFSET_TOP = 60;
+const BLOCK_OFFSET_LEFT = (W - BLOCK_COLS * (BLOCK_W + BLOCK_PAD) + BLOCK_PAD) / 2;
+const ROW_COLORS = ['red', 'hotpink', 'magenta', 'yellow', 'green', 'cyan', 'gray'];
+
+let blocks = [];
+
+function createBlocks() {
+  blocks = [];
+  for (let r = 0; r < BLOCK_ROWS; r++) {
+    for (let c = 0; c < BLOCK_COLS; c++) {
+      blocks.push({
+        x: BLOCK_OFFSET_LEFT + c * (BLOCK_W + BLOCK_PAD),
+        y: BLOCK_OFFSET_TOP + r * (BLOCK_H + BLOCK_PAD),
+        width: BLOCK_W,
+        height: BLOCK_H,
+        color: ROW_COLORS[r],
+        alive: true,
+      });
+    }
+  }
+}
+
 const keys = {};
 
 window.addEventListener('keydown', e => { keys[e.key] = true; });
@@ -123,7 +150,15 @@ function updateGameOver() {}
 function updateVictory() {}
 
 function drawStart() {}
+function drawBlocks() {
+  for (const b of blocks) {
+    if (!b.alive) continue;
+    drawSprite(ctx, 'block_' + b.color, b.x, b.y, b.width, b.height);
+  }
+}
+
 function drawPlaying() {
+  drawBlocks();
   drawSprite(ctx, 'paddle', paddle.x - paddle.width / 2, paddle.y, paddle.width, paddle.height);
   drawSprite(ctx, 'ball', ball.x - ball.radius, ball.y - ball.radius, ball.radius * 2, ball.radius * 2);
 }
@@ -138,5 +173,6 @@ function gameLoop() {
 }
 
 loadSpritesheet(() => {
+  createBlocks();
   gameLoop();
 });

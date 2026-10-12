@@ -173,6 +173,16 @@ function updatePlaying() {
       break;
     }
   }
+
+  // Bola cae por debajo del canvas
+  if (ball.y - ball.radius > H) {
+    state.lives--;
+    if (state.lives <= 0) {
+      state.status = 'gameover';
+    } else {
+      attachBall();
+    }
+  }
 }
 function updateGameOver() {}
 function updateVictory() {}

@@ -103,26 +103,26 @@ Convenciones:
 
 ## Criterios de aceptación
 
-- [ ] `index.html` abre en navegador sin errores en consola.
-- [ ] Canvas de 480×720 visible y centrado.
-- [ ] Paddle se mueve con flechas izquierda/derecha y A/D.
-- [ ] Paddle no sale de los bordes del canvas.
-- [ ] Bola empieza pegada al paddle.
-- [ ] Space lanza la bola.
-- [ ] Bola rebota en paredes laterales y techo.
-- [ ] Bola rebota en paddle con ángulo variable según punto de impacto.
-- [ ] Grilla de bloques visible con colores del spritesheet.
-- [ ] Bloques desaparecen al ser golpeados por la bola.
-- [ ] Score incrementa en 10 por cada bloque destruido.
-- [ ] Score y vidas visibles durante el juego.
-- [ ] Perder la bola (cae por debajo) resta una vida.
-- [ ] Tras perder vida, bola vuelve pegada al paddle.
-- [ ] 0 vidas muestra pantalla de Game Over con score final.
-- [ ] Romper todos los bloques muestra pantalla de Victoria.
-- [ ] Pantalla de inicio se muestra al cargar.
-- [ ] Esc o P pausa el juego con overlay visual.
-- [ ] Desde Game Over o Victoria, Space reinicia la partida.
-- [ ] Todos los sprites se renderizan correctamente desde el spritesheet.
+- [x ] `index.html` abre en navegador sin errores en consola.
+- [x ] Canvas de 480×720 visible y centrado.
+- [x ] Paddle se mueve con flechas izquierda/derecha y A/D.
+- [x ] Paddle no sale de los bordes del canvas.
+- [x ] Bola empieza pegada al paddle.
+- [x ] Space lanza la bola.
+- [x ] Bola rebota en paredes laterales y techo.
+- [x ] Bola rebota en paddle con ángulo variable según punto de impacto.
+- [x ] Grilla de bloques visible con colores del spritesheet.
+- [x ] Bloques desaparecen al ser golpeados por la bola.
+- [x ] Score incrementa en 10 por cada bloque destruido.
+- [x ] Score y vidas visibles durante el juego.
+- [x ] Perder la bola (cae por debajo) resta una vida.
+- [x ] Tras perder vida, bola vuelve pegada al paddle.
+- [x ] 0 vidas muestra pantalla de Game Over con score final.
+- [x ] Romper todos los bloques muestra pantalla de Victoria.
+- [x ] Pantalla de inicio se muestra al cargar.
+- [x ] Esc o P pausa el juego con overlay visual.
+- [x ] Desde Game Over o Victoria, Space reinicia la partida.
+- [x ] Todos los sprites se renderizan correctamente desde el spritesheet.
 
 ## Decisiones tomadas y descartadas
 

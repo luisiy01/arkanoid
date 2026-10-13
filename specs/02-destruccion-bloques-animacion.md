@@ -1,6 +1,6 @@
 # SPEC 02 — Destruccion de bloques con animacion de explosion
 
-> **Estado:** Aprobado
+> **Estado:** Implementado
 > **Depende de:** SPEC 01
 > **Fecha:** 2026-10-12
 > **Objetivo:** Reemplazar la desaparicion instantanea de bloques por una animacion de explosion de 4 frames usando los sprites existentes del spritesheet.
@@ -59,15 +59,15 @@ Convencion: `EXPLOSION_DURATION` (150ms) se divide entre 4 frames = ~37.5ms por 
 
 ## Criterios de aceptacion
 
-- [ ] Al golpear un bloque con la bola, se reproduce una animacion de explosion de 4 frames en la posicion del bloque.
-- [ ] La animacion usa los frames correctos segun el color del bloque destruido.
-- [ ] La animacion dura 150ms en total.
-- [ ] Multiples explosiones pueden ocurrir simultaneamente sin problemas.
-- [ ] La explosion no afecta la fisica del juego (la bola no colisiona con explosiones).
-- [ ] La condicion de victoria espera a que terminen todas las explosiones antes de mostrar la pantalla de victoria.
-- [ ] Reiniciar la partida limpia todas las explosiones activas.
-- [ ] El game loop usa deltaTime para que la animacion sea independiente del framerate.
-- [ ] No hay errores en consola relacionados con la animacion.
+- [ x] Al golpear un bloque con la bola, se reproduce una animacion de explosion de 4 frames en la posicion del bloque.
+- [ x] La animacion usa los frames correctos segun el color del bloque destruido.
+- [ x] La animacion dura 150ms en total.
+- [ x] Multiples explosiones pueden ocurrir simultaneamente sin problemas.
+- [ x] La explosion no afecta la fisica del juego (la bola no colisiona con explosiones).
+- [ x] La condicion de victoria espera a que terminen todas las explosiones antes de mostrar la pantalla de victoria.
+- [ x] Reiniciar la partida limpia todas las explosiones activas.
+- [ x] El game loop usa deltaTime para que la animacion sea independiente del framerate.
+- [ x] No hay errores en consola relacionados con la animacion.
 
 ## Decisiones tomadas y descartadas
 

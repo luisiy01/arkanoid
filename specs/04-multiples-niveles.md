@@ -1,6 +1,6 @@
 # SPEC 04 — Multiples niveles con dificultad progresiva
 
-> **Estado:** Aprobado
+> **Estado:** Implementado
 > **Depende de:** SPEC 01, SPEC 02
 > **Fecha:** 2026-10-13
 > **Objetivo:** Implementar 3 niveles con patrones de bloques distintos y dificultad progresiva (velocidad de bola, cantidad de filas y ancho de paddle).
@@ -88,19 +88,19 @@ Convenciones:
 
 ## Criterios de aceptacion
 
-- [ ] Existen 3 niveles con patrones de bloques diferentes.
-- [ ] Nivel 2 tiene mas filas de bloques que nivel 1.
-- [ ] Nivel 3 tiene mas filas de bloques que nivel 2.
-- [ ] La velocidad de bola aumenta en cada nivel.
-- [ ] El paddle se hace mas angosto en cada nivel.
-- [ ] Al completar un nivel (no el ultimo), se muestra "Level N" por ~2 segundos.
-- [ ] Tras la pantalla de transicion, el siguiente nivel comienza con bola pegada al paddle.
-- [ ] Las vidas se mantienen entre niveles.
-- [ ] El score se acumula entre niveles.
-- [ ] Al completar el nivel 3, se muestra pantalla de victoria final con score total.
-- [ ] El HUD muestra el nivel actual durante el juego.
-- [ ] Reiniciar la partida vuelve al nivel 1 con parametros originales.
-- [ ] No hay errores en consola al transicionar entre niveles.
+- [ x] Existen 3 niveles con patrones de bloques diferentes.
+- [ x] Nivel 2 tiene mas filas de bloques que nivel 1.
+- [ x] Nivel 3 tiene mas filas de bloques que nivel 2.
+- [ x] La velocidad de bola aumenta en cada nivel.
+- [ x] El paddle se hace mas angosto en cada nivel.
+- [ x] Al completar un nivel (no el ultimo), se muestra "Level N" por ~2 segundos.
+- [ x] Tras la pantalla de transicion, el siguiente nivel comienza con bola pegada al paddle.
+- [ x] Las vidas se mantienen entre niveles.
+- [ x] El score se acumula entre niveles.
+- [ x] Al completar el nivel 3, se muestra pantalla de victoria final con score total.
+- [ x] El HUD muestra el nivel actual durante el juego.
+- [ x] Reiniciar la partida vuelve al nivel 1 con parametros originales.
+- [ x] No hay errores en consola al transicionar entre niveles.
 
 ## Decisiones tomadas y descartadas
 

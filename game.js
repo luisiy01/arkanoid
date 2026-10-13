@@ -21,6 +21,7 @@ const state = {
   score: 0,
   ballAttached: true,
   level: 0,
+  transitionTimer: 0,
 };
 
 const paddle = {
@@ -149,6 +150,7 @@ function update(dt) {
     case 'start': updateStart(); break;
     case 'playing': updatePlaying(dt); break;
     case 'paused': break;
+    case 'levelTransition': updateLevelTransition(dt); break;
     case 'gameover': updateGameOver(); break;
     case 'victory': updateVictory(); break;
   }
@@ -162,6 +164,7 @@ function draw() {
     case 'start': drawStart(); break;
     case 'playing': drawPlaying(); break;
     case 'paused': drawPlaying(); drawPauseOverlay(); break;
+    case 'levelTransition': drawLevelTransition(); break;
     case 'gameover': drawGameOver(); break;
     case 'victory': drawVictory(); break;
   }
@@ -285,6 +288,12 @@ function updatePlaying(dt) {
     }
   }
 }
+function updateLevelTransition(dt) {
+  state.transitionTimer -= dt;
+  if (state.transitionTimer <= 0) {
+    state.status = 'playing';
+  }
+}
 function updateGameOver() {
   if (keys[' ']) resetGame();
 }
@@ -339,6 +348,9 @@ function drawPlaying() {
   drawSprite(ctx, 'paddle', paddle.x - paddle.width / 2, paddle.y, paddle.width, paddle.height);
   drawSprite(ctx, 'ball', ball.x - ball.radius, ball.y - ball.radius, ball.radius * 2, ball.radius * 2);
   drawHUD();
+}
+function drawLevelTransition() {
+  drawCenterText('Level ' + (state.level + 1), 'Get ready!');
 }
 function drawPauseOverlay() {
   ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';

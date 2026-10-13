@@ -372,7 +372,7 @@ function drawGameOver() {
   drawCenterText('GAME OVER', 'Score: ' + state.score + '  |  Press Space to restart');
 }
 function drawVictory() {
-  drawCenterText('VICTORY!', 'Score: ' + state.score + '  |  Press Space to restart');
+  drawCenterText('YOU WIN!', 'Total Score: ' + state.score + '  |  Press Space to restart');
 }
 
 let lastTime = 0;

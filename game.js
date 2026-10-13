@@ -270,9 +270,18 @@ function updatePlaying(dt) {
     }
   }
 
-  // Victoria: no quedan bloques vivos y no hay explosiones activas
+  // Nivel completado: no quedan bloques vivos y no hay explosiones activas
   if (blocks.every(b => !b.alive) && explosions.length === 0) {
-    state.status = 'victory';
+    if (state.level < LEVELS.length - 1) {
+      state.level++;
+      applyLevelParams();
+      createBlocks();
+      attachBall();
+      state.status = 'levelTransition';
+      state.transitionTimer = 2000;
+    } else {
+      state.status = 'victory';
+    }
     return;
   }
 

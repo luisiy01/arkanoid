@@ -271,8 +271,19 @@ function drawBlocks() {
   }
 }
 
+function drawExplosions() {
+  for (const e of explosions) {
+    const frameIndex = Math.min(Math.floor(e.elapsed / (EXPLOSION_DURATION / 4)), 3);
+    const frames = EXPLOSION_FRAMES[e.color];
+    if (frames) {
+      drawFrame(ctx, frames[frameIndex], e.x, e.y, e.width, e.height);
+    }
+  }
+}
+
 function drawPlaying() {
   drawBlocks();
+  drawExplosions();
   drawSprite(ctx, 'paddle', paddle.x - paddle.width / 2, paddle.y, paddle.width, paddle.height);
   drawSprite(ctx, 'ball', ball.x - ball.radius, ball.y - ball.radius, ball.radius * 2, ball.radius * 2);
   drawHUD();

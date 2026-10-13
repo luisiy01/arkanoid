@@ -37,6 +37,19 @@ const BLOCK_OFFSET_LEFT = (W - BLOCK_COLS * (BLOCK_W + BLOCK_PAD) + BLOCK_PAD) /
 const ROW_COLORS = ['red', 'hotpink', 'magenta', 'yellow', 'green', 'cyan', 'gray'];
 
 let blocks = [];
+let explosions = [];
+
+function spawnExplosion(block) {
+  explosions.push({
+    x: block.x,
+    y: block.y,
+    width: block.width,
+    height: block.height,
+    color: block.color,
+    frame: 0,
+    elapsed: 0,
+  });
+}
 
 function createBlocks() {
   blocks = [];

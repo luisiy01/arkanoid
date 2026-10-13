@@ -315,6 +315,8 @@ function drawHUD() {
   ctx.font = '16px monospace';
   ctx.textAlign = 'left';
   ctx.fillText('Lives: ' + state.lives, 12, 24);
+  ctx.textAlign = 'center';
+  ctx.fillText('Level: ' + (state.level + 1), W / 2, 24);
   ctx.textAlign = 'right';
   ctx.fillText('Score: ' + state.score, W - 12, 24);
   ctx.textAlign = 'left';

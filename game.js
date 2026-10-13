@@ -215,8 +215,8 @@ function updatePlaying(dt) {
     }
   }
 
-  // Victoria: no quedan bloques vivos
-  if (blocks.every(b => !b.alive)) {
+  // Victoria: no quedan bloques vivos y no hay explosiones activas
+  if (blocks.every(b => !b.alive) && explosions.length === 0) {
     state.status = 'victory';
     return;
   }

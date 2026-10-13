@@ -74,6 +74,7 @@ function resetGame() {
   state.lives = 3;
   state.score = 0;
   paddle.x = W / 2;
+  explosions = [];
   createBlocks();
   attachBall();
 }

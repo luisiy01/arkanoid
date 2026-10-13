@@ -39,6 +39,27 @@ const ball = {
   speed: 4,
 };
 
+const LEVELS = [
+  {
+    rows: 7,
+    colors: ['red', 'hotpink', 'magenta', 'yellow', 'green', 'cyan', 'gray'],
+    ballSpeed: 4,
+    paddleWidth: 80,
+  },
+  {
+    rows: 9,
+    colors: ['cyan', 'green', 'yellow', 'magenta', 'hotpink', 'red', 'gray', 'cyan', 'green'],
+    ballSpeed: 5,
+    paddleWidth: 70,
+  },
+  {
+    rows: 10,
+    colors: ['magenta', 'red', 'hotpink', 'yellow', 'green', 'cyan', 'gray', 'red', 'magenta', 'hotpink'],
+    ballSpeed: 6,
+    paddleWidth: 60,
+  },
+];
+
 const BLOCK_ROWS = 7;
 const BLOCK_COLS = 12;
 const BLOCK_W = 32;

@@ -1,6 +1,6 @@
 # SPEC 04 — Multiples niveles con dificultad progresiva
 
-> **Estado:** Aprobado
+> **Estado:** Borrador
 > **Depende de:** SPEC 01, SPEC 02
 > **Fecha:** 2026-10-13
 > **Objetivo:** Implementar 3 niveles con patrones de bloques distintos y dificultad progresiva (velocidad de bola, cantidad de filas y ancho de paddle).

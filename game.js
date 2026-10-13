@@ -20,6 +20,7 @@ const state = {
   lives: 3,
   score: 0,
   ballAttached: true,
+  level: 0,
 };
 
 const paddle = {
@@ -84,16 +85,26 @@ function spawnExplosion(block) {
   });
 }
 
+function applyLevelParams() {
+  const lvl = LEVELS[state.level];
+  ball.speed = lvl.ballSpeed;
+  paddle.width = lvl.paddleWidth;
+}
+
 function createBlocks() {
+  const lvl = LEVELS[state.level];
+  const rows = lvl.rows;
+  const colors = lvl.colors;
+  const offsetLeft = (W - BLOCK_COLS * (BLOCK_W + BLOCK_PAD) + BLOCK_PAD) / 2;
   blocks = [];
-  for (let r = 0; r < BLOCK_ROWS; r++) {
+  for (let r = 0; r < rows; r++) {
     for (let c = 0; c < BLOCK_COLS; c++) {
       blocks.push({
-        x: BLOCK_OFFSET_LEFT + c * (BLOCK_W + BLOCK_PAD),
+        x: offsetLeft + c * (BLOCK_W + BLOCK_PAD),
         y: BLOCK_OFFSET_TOP + r * (BLOCK_H + BLOCK_PAD),
         width: BLOCK_W,
         height: BLOCK_H,
-        color: ROW_COLORS[r],
+        color: colors[r],
         alive: true,
       });
     }
@@ -106,8 +117,10 @@ function resetGame() {
   state.status = 'playing';
   state.lives = 3;
   state.score = 0;
+  state.level = 0;
   paddle.x = W / 2;
   explosions = [];
+  applyLevelParams();
   createBlocks();
   attachBall();
 }
@@ -350,6 +363,7 @@ function gameLoop(timestamp) {
 }
 
 loadSpritesheet(() => {
+  applyLevelParams();
   createBlocks();
   requestAnimationFrame((timestamp) => {
     lastTime = timestamp;

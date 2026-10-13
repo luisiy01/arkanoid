@@ -300,13 +300,20 @@ function drawVictory() {
   drawCenterText('VICTORY!', 'Score: ' + state.score + '  |  Press Space to restart');
 }
 
-function gameLoop() {
-  update();
+let lastTime = 0;
+
+function gameLoop(timestamp) {
+  const dt = Math.min(timestamp - lastTime, 33);
+  lastTime = timestamp;
+  update(dt);
   draw();
   requestAnimationFrame(gameLoop);
 }
 
 loadSpritesheet(() => {
   createBlocks();
-  gameLoop();
+  requestAnimationFrame((timestamp) => {
+    lastTime = timestamp;
+    gameLoop(timestamp);
+  });
 });

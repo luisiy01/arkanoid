@@ -3,6 +3,18 @@ const ctx = canvas.getContext('2d');
 const W = canvas.width;
 const H = canvas.height;
 
+const sounds = {
+  bounce: new Audio('assets/sounds/ball-bounce.mp3'),
+  breakBlock: new Audio('assets/sounds/break-sound.mp3'),
+};
+
+function playSound(name) {
+  const s = sounds[name];
+  if (!s) return;
+  const clone = s.cloneNode();
+  clone.play().catch(() => {});
+}
+
 const state = {
   status: 'start',
   lives: 3,

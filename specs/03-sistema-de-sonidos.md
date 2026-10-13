@@ -1,6 +1,6 @@
 # SPEC 03 — Sistema de sonidos
 
-> **Estado:** Aprobado
+> **Estado:** Implementado
 > **Depende de:** SPEC 01
 > **Fecha:** 2026-10-13
 > **Objetivo:** Reproducir efectos de sonido al rebotar la bola y al destruir bloques usando los archivos MP3 existentes.
@@ -49,13 +49,13 @@ function playSound(name) { /* ... */ }
 
 ## Criterios de aceptacion
 
-- [ ] Al rebotar la bola contra una pared lateral se reproduce `ball-bounce.mp3`.
-- [ ] Al rebotar la bola contra el techo se reproduce `ball-bounce.mp3`.
-- [ ] Al rebotar la bola contra el paddle se reproduce `ball-bounce.mp3`.
-- [ ] Al destruir un bloque se reproduce `break-sound.mp3`.
-- [ ] Multiples sonidos pueden reproducirse simultaneamente sin cortarse entre si.
-- [ ] No hay errores en consola relacionados con audio.
-- [ ] El juego funciona correctamente si el navegador bloquea autoplay (los sonidos comienzan tras la primera interaccion).
+- [ x] Al rebotar la bola contra una pared lateral se reproduce `ball-bounce.mp3`.
+- [ x] Al rebotar la bola contra el techo se reproduce `ball-bounce.mp3`.
+- [ x] Al rebotar la bola contra el paddle se reproduce `ball-bounce.mp3`.
+- [ x] Al destruir un bloque se reproduce `break-sound.mp3`.
+- [ x] Multiples sonidos pueden reproducirse simultaneamente sin cortarse entre si.
+- [ x] No hay errores en consola relacionados con audio.
+- [x ] El juego funciona correctamente si el navegador bloquea autoplay (los sonidos comienzan tras la primera interaccion).
 
 ## Decisiones tomadas y descartadas
 

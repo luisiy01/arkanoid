@@ -215,6 +215,7 @@ function updatePlaying(dt) {
       spawnExplosion(b);
       b.alive = false;
       state.score += 10;
+      playSound('breakBlock');
 
       const overlapLeft = ball.x + ball.radius - b.x;
       const overlapRight = b.x + b.width - (ball.x - ball.radius);

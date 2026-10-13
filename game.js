@@ -171,14 +171,17 @@ function updatePlaying(dt) {
   if (ball.x - ball.radius < 0) {
     ball.x = ball.radius;
     ball.dx = -ball.dx;
+    playSound('bounce');
   }
   if (ball.x + ball.radius > W) {
     ball.x = W - ball.radius;
     ball.dx = -ball.dx;
+    playSound('bounce');
   }
   if (ball.y - ball.radius < 0) {
     ball.y = ball.radius;
     ball.dy = -ball.dy;
+    playSound('bounce');
   }
 
   // Colisión bola-paddle
@@ -197,6 +200,7 @@ function updatePlaying(dt) {
     ball.dx = ball.speed * Math.sin(angle);
     ball.dy = -ball.speed * Math.cos(angle);
     ball.y = paddle.y - ball.radius;
+    playSound('bounce');
   }
 
   // Colisión bola-bloques

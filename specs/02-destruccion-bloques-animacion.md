@@ -1,6 +1,6 @@
 # SPEC 02 — Destruccion de bloques con animacion de explosion
 
-> **Estado:** Borrador
+> **Estado:** Aprobado
 > **Depende de:** SPEC 01
 > **Fecha:** 2026-10-12
 > **Objetivo:** Reemplazar la desaparicion instantanea de bloques por una animacion de explosion de 4 frames usando los sprites existentes del spritesheet.

@@ -186,6 +186,7 @@ function updatePlaying() {
       ball.y + ball.radius > b.y &&
       ball.y - ball.radius < b.y + b.height
     ) {
+      spawnExplosion(b);
       b.alive = false;
       state.score += 10;
 

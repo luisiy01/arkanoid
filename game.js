@@ -88,10 +88,19 @@ window.addEventListener('keydown', e => {
 });
 window.addEventListener('keyup', e => { keys[e.key] = false; });
 
-function update() {
+function updateExplosions(dt) {
+  for (let i = explosions.length - 1; i >= 0; i--) {
+    explosions[i].elapsed += dt;
+    if (explosions[i].elapsed >= EXPLOSION_DURATION) {
+      explosions.splice(i, 1);
+    }
+  }
+}
+
+function update(dt) {
   switch (state.status) {
     case 'start': updateStart(); break;
-    case 'playing': updatePlaying(); break;
+    case 'playing': updatePlaying(dt); break;
     case 'paused': break;
     case 'gameover': updateGameOver(); break;
     case 'victory': updateVictory(); break;
@@ -126,7 +135,7 @@ function launchBall() {
   ball.dy = -ball.speed * 0.8;
 }
 
-function updatePlaying() {
+function updatePlaying(dt) {
   if (keys['ArrowLeft'] || keys['a'] || keys['A']) {
     paddle.x -= paddle.speed;
   }
@@ -211,6 +220,8 @@ function updatePlaying() {
     state.status = 'victory';
     return;
   }
+
+  updateExplosions(dt);
 
   // Bola cae por debajo del canvas
   if (ball.y - ball.radius > H) {
